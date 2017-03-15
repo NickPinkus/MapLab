@@ -2,7 +2,7 @@
 
 
 
-Location::Location(std::string name) : _name(name)
+Location::Location(string name) : _name(name)
 {
 }
 
@@ -11,7 +11,7 @@ Location::~Location()
 {
 }
 
-std::string Location::DisplayLocationInfo()
+string Location::DisplayLocationInfo()
 {
-	return "Location is " + _name + "\n";
+	return _name + "\n";
 }

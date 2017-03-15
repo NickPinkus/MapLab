@@ -2,9 +2,10 @@
 
 
 
-Map::Map(std::string startLocationName)
+Map::Map(string startLocationName)
 {
 	CurrentLocation = new Location(startLocationName);
+	_locationsVisited.push(CurrentLocation);
 }
 
 
@@ -18,7 +19,15 @@ void Map::Move(Location *newLocation)
 	CurrentLocation = newLocation;
 }
 
-std::string Map::GetPathBackToHome()
+string Map::GetPathBackToHome()
 {
-	return "TODO: Implement this";
+	string result = "Path back to Home:\n";
+
+	while (_locationsVisited.size() != 0)
+	{
+		result += _locationsVisited.top()->DisplayLocationInfo();
+		_locationsVisited.pop();
+	}
+
+	return result;
 }

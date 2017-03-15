@@ -1,14 +1,16 @@
 #pragma once
 #include <string>
+using namespace std;
+
 class Location
 {
 private:
-	std::string _name;
+	string _name;
 	
 public:
-	Location(std::string name);
+	Location(string name);
 	~Location();
-	std::string DisplayLocationInfo();
+	string DisplayLocationInfo();
 
 	Location *North = nullptr;
 	Location *South = nullptr;
