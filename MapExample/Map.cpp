@@ -29,5 +29,7 @@ string Map::GetPathBackToHome()
 		_locationsVisited.pop();
 	}
 
+	CurrentLocation = Map("Home").CurrentLocation;
+
 	return result;
 }

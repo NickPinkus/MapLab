@@ -6,9 +6,10 @@ class Location
 {
 private:
 	string _name;
-	
+	int xCoord = 0;
+	int yCoord = 0;
 public:
-	Location(string name);
+	Location(string name, int xCoord, int yCoord);
 	~Location();
 	string DisplayLocationInfo();
 
@@ -16,5 +17,9 @@ public:
 	Location *South = nullptr;
 	Location *East = nullptr;
 	Location *West = nullptr;
+
+	int getXCoord();
+	int getYCoord();
+	string getNewCoordinates(int, int);
 };
 

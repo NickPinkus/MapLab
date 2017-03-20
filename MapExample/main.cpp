@@ -1,8 +1,10 @@
+#pragma once
 #include <iostream>
+#include <unordered_map>
 #include "Map.h"
 using namespace std;
 
-void GoNorth(Map &map);
+void GoNorth(Map &map, unordered_map <string, string> MapTable);
 void GoSouth(Map &map);
 void GoEast(Map &map);
 void GoWest(Map &map);
@@ -11,6 +13,9 @@ void GoWest(Map &map);
 int main()
 {
 	auto map = Map("Home");
+	int *HomePointer = &;
+	unordered_map <string, string*> MapTable;
+	MapTable.insert("0,0", HomePointer);
 	int choice = -1;
 	while (choice != 0) 
 	{
@@ -27,7 +32,7 @@ int main()
 		switch (choice) 
 		{
 		case 1: cout << "Current Location: " << map.CurrentLocation->DisplayLocationInfo(); break;
-		case 2: GoNorth(map); break;
+		case 2: GoNorth(map, MapTable); break;
 		case 3: GoEast(map); break;
 		case 4: GoSouth(map); break;
 		case 5: GoWest(map); break;
@@ -41,7 +46,7 @@ int main()
 	return 0;
 }
 
-void GoNorth(Map &map) 
+void GoNorth(Map &map, unordered_map <string, string> MapTable)
 {
 	auto newLocation = map.CurrentLocation->North;
 	if (newLocation == nullptr) 
@@ -51,7 +56,7 @@ void GoNorth(Map &map)
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName);
+		newLocation = new Location(newName, map.CurrentLocation->getXCoord(), map.CurrentLocation->getYCoord()+1);
 		cout << "This place is now called: " + newName << endl;
 		
 	}
@@ -76,7 +81,7 @@ void GoEast(Map &map)
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName);
+		newLocation = new Location(newName, map.CurrentLocation->getXCoord()+1, map.CurrentLocation->getYCoord());
 		cout << "This place is now called: " + newName << endl;
 
 	}
@@ -100,7 +105,7 @@ void GoSouth(Map &map)
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName);
+		newLocation = new Location(newName, map.CurrentLocation->getXCoord(), map.CurrentLocation->getYCoord() - 1);
 		cout << "This place is now called: " + newName << endl;
 
 	}
@@ -124,7 +129,7 @@ void GoWest(Map &map)
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName);
+		newLocation = new Location(newName, map.CurrentLocation->getXCoord()-1, map.CurrentLocation->getYCoord());
 		cout << "This place is now called: " + newName << endl;
 
 	}
