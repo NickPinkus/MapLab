@@ -19,5 +19,6 @@ public:
 	string GetPathBackToHome();
 	void Move(Location *newLocation);
 	Location * LookupLocationOnMap(int x, int y);
+	void AddToMap(string, Location *);
 };
 

@@ -28,6 +28,11 @@ Location * Map::LookupLocationOnMap(int x, int y)
 	return _mapLookup[hash];
 }
 
+void Map::AddToMap(string coordinates, Location * locationPtr)
+{
+	_mapLookup[coordinates] = locationPtr;
+}
+
 string Map::GetPathBackToHome()
 {
 	string result = "Path back to Home:\n";
