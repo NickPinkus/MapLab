@@ -6,8 +6,8 @@ class Location
 {
 private:
 	string _name;
-	int xCoord = 0;
-	int yCoord = 0;
+	int _xCoord = 0;
+	int _yCoord = 0;
 public:
 	Location(string name, int xCoord, int yCoord);
 	~Location();
@@ -18,8 +18,8 @@ public:
 	Location *East = nullptr;
 	Location *West = nullptr;
 
-	int getXCoord();
-	int getYCoord();
+	int getXCoord() { return _xCoord; }
+	int getYCoord() { return _yCoord; }
 	string getNewCoordinates(int, int);
 };
 

@@ -4,7 +4,7 @@
 
 Map::Map(string startLocationName)
 {
-	CurrentLocation = new Location(startLocationName);
+	CurrentLocation = new Location(startLocationName, 0, 0);
 	_locationsVisited.push(CurrentLocation);
 }
 

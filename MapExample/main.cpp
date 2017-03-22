@@ -4,7 +4,7 @@
 #include "Map.h"
 using namespace std;
 
-void GoNorth(Map &map, unordered_map <string, string> MapTable);
+void GoNorth(Map &map);
 void GoSouth(Map &map);
 void GoEast(Map &map);
 void GoWest(Map &map);
@@ -13,9 +13,6 @@ void GoWest(Map &map);
 int main()
 {
 	auto map = Map("Home");
-	int *HomePointer = &;
-	unordered_map <string, string*> MapTable;
-	MapTable.insert("0,0", HomePointer);
 	int choice = -1;
 	while (choice != 0) 
 	{
@@ -32,7 +29,7 @@ int main()
 		switch (choice) 
 		{
 		case 1: cout << "Current Location: " << map.CurrentLocation->DisplayLocationInfo(); break;
-		case 2: GoNorth(map, MapTable); break;
+		case 2: GoNorth(map); break;
 		case 3: GoEast(map); break;
 		case 4: GoSouth(map); break;
 		case 5: GoWest(map); break;
@@ -46,17 +43,21 @@ int main()
 	return 0;
 }
 
-void GoNorth(Map &map, unordered_map <string, string> MapTable)
+void GoNorth(Map &map)
 {
 	auto newLocation = map.CurrentLocation->North;
+	int currentX = map.CurrentLocation->getXCoord();
+	int currentY = map.CurrentLocation->getYCoord();
 	if (newLocation == nullptr) 
 	{
+		int newX = currentX;
+		int newY = currentY + 1;
 		system("cls");
 		cout << "You haven't been here before! Enter a name for this place: ";
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName, map.CurrentLocation->getXCoord(), map.CurrentLocation->getYCoord()+1);
+		newLocation = new Location(newName,newX,newY);
 		cout << "This place is now called: " + newName << endl;
 		
 	}
@@ -74,14 +75,18 @@ void GoNorth(Map &map, unordered_map <string, string> MapTable)
 void GoEast(Map &map)
 {
 	auto newLocation = map.CurrentLocation->East;
+	int currentX = map.CurrentLocation->getXCoord();
+	int currentY = map.CurrentLocation->getYCoord();
 	if (newLocation == nullptr)
 	{
+		int newX = currentX + 1;
+		int newY = currentY;
 		system("cls");
 		cout << "You haven't been here before! Enter a name for this place: ";
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName, map.CurrentLocation->getXCoord()+1, map.CurrentLocation->getYCoord());
+		newLocation = new Location(newName, newX, newY);
 		cout << "This place is now called: " + newName << endl;
 
 	}
@@ -98,14 +103,18 @@ void GoEast(Map &map)
 void GoSouth(Map &map)
 {
 	auto newLocation = map.CurrentLocation->South;
+	int currentX = map.CurrentLocation->getXCoord();
+	int currentY = map.CurrentLocation->getYCoord();
 	if (newLocation == nullptr)
 	{
+		int newX = currentX;
+		int newY = currentY - 1;
 		system("cls");
 		cout << "You haven't been here before! Enter a name for this place: ";
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName, map.CurrentLocation->getXCoord(), map.CurrentLocation->getYCoord() - 1);
+		newLocation = new Location(newName, newX, newY);
 		cout << "This place is now called: " + newName << endl;
 
 	}
@@ -122,14 +131,18 @@ void GoSouth(Map &map)
 void GoWest(Map &map)
 {
 	auto newLocation = map.CurrentLocation->West;
+	int currentX = map.CurrentLocation->getXCoord();
+	int currentY = map.CurrentLocation->getYCoord();
 	if (newLocation == nullptr)
 	{
+		int newX = currentX - 1;
+		int newY = currentY;
 		system("cls");
 		cout << "You haven't been here before! Enter a name for this place: ";
 		string newName;
 		cin.ignore();
 		getline(cin, newName);
-		newLocation = new Location(newName, map.CurrentLocation->getXCoord()-1, map.CurrentLocation->getYCoord());
+		newLocation = new Location(newName, newX, newY);
 		cout << "This place is now called: " + newName << endl;
 
 	}
