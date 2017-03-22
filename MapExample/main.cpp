@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <unordered_map>
 #include "Map.h"
 using namespace std;
 
@@ -52,14 +51,22 @@ void GoNorth(Map &map)
 	{
 		int newX = currentX;
 		int newY = currentY + 1;
+		auto existing = map.LookupLocationOnMap(newX, newY);
 		system("cls");
-		cout << "You haven't been here before! Enter a name for this place: ";
-		string newName;
-		cin.ignore();
-		getline(cin, newName);
-		newLocation = new Location(newName,newX,newY);
-		cout << "This place is now called: " + newName << endl;
-		
+
+		if (existing == nullptr)
+		{
+			cout << "You haven't been here before! Enter a name for this place: ";
+			string newName;
+			cin.ignore();
+			getline(cin, newName);
+			newLocation = new Location(newName, newX, newY);
+			cout << "This place is now called: " + newName << endl;
+		}
+		else
+		{
+			cout << "You've been here before. " << existing->DisplayLocationInfo();
+		}
 	}
 	else
 	{
