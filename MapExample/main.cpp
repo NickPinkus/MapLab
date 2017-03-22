@@ -21,7 +21,8 @@ int main()
 		cout << "3) Go East" << endl;
 		cout << "4) Go South" << endl;
 		cout << "5) Go West" << endl;
-		cout << "6) Go To Home" << endl;
+		cout << "6) Where have I been?" << endl;
+		cout << "7) How did I get here?" << endl;
 		cout << "0) Exit" << endl;
 		cin >> choice;
 
@@ -32,7 +33,8 @@ int main()
 		case 3: GoEast(map); break;
 		case 4: GoSouth(map); break;
 		case 5: GoWest(map); break;
-		case 6: system("cls");  cout << map.GetPathBackToHome() << endl; break;
+		case 6: system("cls"); cout << map.GetPathBackToHome() << endl; break;
+		case 7: system("cls"); cout << map.HowDidIGetHere() << endl; break;
 		case 0: break;
 		default: cout << "Enter a valid option"; break;
 		}
